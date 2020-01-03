@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+
+[packages]
+django = "==2.2.9"
+sentry-sdk = "==0.13.5"
+graphene-django = "==2.8.0"
+bleach = "==3.1.0"
+atoma = "==0.0.17"
+
+[requires]
+python_version = "3.7"

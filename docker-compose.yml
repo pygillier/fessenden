@@ -1,0 +1,15 @@
+version: "3.6"
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: fessenden_usr
+      POSTGRES_PASSWORD: fessenden_pwd
+      POSTGRES_DB: fessenden
