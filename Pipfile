@@ -10,10 +10,11 @@ flake8 = "*"
 django = "==2.2.9"
 sentry-sdk = "==0.13.5"
 graphene-django = "==2.8.0"
-bleach = "==3.1.0"
 atoma = "==0.0.17"
 django-environ = "*"
 psycopg2-binary = "==2.8.4"
+django-bleach = "==0.6.1"
+django-service-objects = "==0.6.0"
 
 [requires]
 python_version = "3.7"

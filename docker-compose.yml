@@ -14,5 +14,7 @@ services:
       POSTGRES_USER: fessenden_usr
       POSTGRES_PASSWORD: fessenden_pwd
       POSTGRES_DB: fessenden
+    volumes:
+    - ./.data/postgres:/var/lib/postgresql/data
     ports:
       - 5432:5432
