@@ -8,8 +8,11 @@ services:
       - 6379:6379
   db:
     image: postgres
+    container_name: database
     restart: always
     environment:
       POSTGRES_USER: fessenden_usr
       POSTGRES_PASSWORD: fessenden_pwd
       POSTGRES_DB: fessenden
+    ports:
+      - 5432:5432
