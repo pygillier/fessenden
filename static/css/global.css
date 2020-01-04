@@ -1,0 +1,16 @@
+body {
+    background-color: #EDE7DE;
+    min-height:100vh;
+}
+html,body {
+  height: 100%;
+}
+
+div#navbar {
+    box-shadow: 0px -1px #FFF, 0 2px 2px #171717 inset;
+    border-top: 1px solid #CCC;
+    background: #222;
+}
+div#navbar a {
+    color: white;
+}

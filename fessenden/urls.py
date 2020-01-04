@@ -14,13 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from graphene_django.views import GraphQLView
 from fessenden.schema import schema
-from .settings import DEBUG
-
+from django.conf import settings
 
 urlpatterns = [
+    path('', include('home.urls')),
+    path('feeds/', include('feeds.urls')),
     path('admin/', admin.site.urls),
-    path("graphql", GraphQLView.as_view(graphiql=DEBUG, schema=schema)),
+    path("graphql", GraphQLView.as_view(
+        graphiql=settings.DEBUG,
+        schema=schema)),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+
+        # For django versions before 2.0:
+        # url(r'^__debug__/', include(debug_toolbar.urls)),
+
+    ] + urlpatterns
