@@ -2,7 +2,9 @@
 {% block title %}All feeds{% endblock%}
 {% block content_title %}All feeds{% endblock%}
 {% block content %}
+<div class="card-deck">
 {% for feed in feeds %}
     {% include 'feeds/_summary_card.html' with feed=feed %}
 {% endfor %}
+</div>
 {% endblock %}

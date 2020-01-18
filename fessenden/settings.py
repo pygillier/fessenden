@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'graphene_django',
     'crispy_forms',
     'debug_toolbar',
+    'easy_thumbnails',
+    'django_rq',
 
     # Fessenden
     'home.apps.HomeConfig',
@@ -102,7 +104,7 @@ CACHES = {
     'default': env.cache('REDIS_URL')
 }
 
-
+AUTH_USER_MODEL = "home.User"
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -149,4 +151,35 @@ STATICFILES_DIRS = [
 # Graphene configuration
 GRAPHENE = {
     'SCHEMA': 'fessenden.schema.schema'
+}
+
+# File storage
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# S3 configuration
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', default="fessenden")
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_S3_ENDPOINT_URL = env('AWS_S3_ENDPOINT_URL')
+
+# Thumbnails
+THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+THUMBNAIL_DEBUG = env('DEBUG')
+THUMBNAIL_ALIASES = {
+    'feeds.Feed.cover': {
+        'card_bw': {'size': (300, 250), 'crop': False, 'bw': True},
+        'card': {'size': (300, 250), 'crop': False, 'bw': False},
+    },
+}
+
+RQ_QUEUES = {
+    'default': {
+        'USE_REDIS_CACHE': 'default',
+    },
+    'enclosures': {
+        'USE_REDIS_CACHE': 'default',
+    },
+    'updates': {
+        'USE_REDIS_CACHE': 'default',
+    },
 }

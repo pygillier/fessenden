@@ -5,6 +5,7 @@ verify_ssl = true
 
 [scripts]
 server = "python ./manage.py runserver"
+rq = "python ./manage.py rqworker enclosures default updates"
 
 [dev-packages]
 flake8 = "*"
@@ -21,6 +22,14 @@ django-service-objects = "==0.6.0"
 django-crispy-forms = "==1.8.1"
 django-debug-toolbar = "==2.1"
 requests = "*"
+django-storages = "==1.8"
+pillow = "==7.0.0"
+"boto3" = "==1.10.46"
+easy-thumbnails = "==2.7"
+podcastparser = "==0.6.4"
+django-rq = "==2.2.0"
+rq = "==1.2.0"
+django-redis = "==4.11.0"
 
 [requires]
 python_version = "3.7"

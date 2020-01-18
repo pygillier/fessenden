@@ -3,5 +3,9 @@
         <a class="nav-link" href="{% url 'home:index' %}">Home page</a>
         <a class="nav-link" href="{% url 'feeds:import' %}">Import a feed</a>
         <a class="nav-link" href="{% url 'feeds:list' %}">All feeds</a>
+        {% if debug %}
+        <a class="nav-link" href="http://127.0.0.1:9000" target="_blank">Minio (minio/minio123)</a>
+        <a class="nav-link" href="http://127.0.0.1:8080" target="_blank">PGAdmin</a>
+        {% endif %}
     </nav>
 </div>

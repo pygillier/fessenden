@@ -1,8 +1,12 @@
+{% load thumbnail %}
 <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
+  <img src="{{ feed.cover.card_bw.url }}" data-color-url="{{feed.cover.card.url }}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{feed.title}}</h5>
     <p class="card-text">{{feed.description}}</p>
-    <a href="#" class="btn btn-primary">View episodes</a>
+    <a href="{% url 'feeds:detail' feed.slug %}" class="btn btn-primary">View episodes</a>
+    <form method="post" action="{% url 'feeds:delete' feed.slug%}">{% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
   </div>
 </div>

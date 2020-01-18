@@ -2,3 +2,9 @@ DEBUG=on
 SECRET_KEY=j6!)uody@_2sfr%jnls#-+y07!bvw2m3wqwlajy=uxn=)2x)fq
 DATABASE_URL=psql://fessenden_usr:fessenden_pwd@127.0.0.1:5432/fessenden
 REDIS_URL=rediscache://127.0.0.1:6378/1?client_class=django_redis.client.DefaultClient&password=ungithubbed-secret
+
+AWS_STORAGE_BUCKET_NAME = 'fessenden'
+
+AWS_ACCESS_KEY_ID=minio
+AWS_SECRET_ACCESS_KEY=minio123
+AWS_S3_ENDPOINT_URL=http://127.0.0.1:9000

@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}{{feed.title}}{% endblock%}
+{% block content_title %}{{feed.title}} (<a href="{{feed.url}}">RSS</a>){% endblock%}
+{% block content %}
+<p>{{feed.description}}</p>
+<section class="list-group">
+    {% for episode in feed.episodes.all %}
+    <article class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{episode.title}}</h5>
+      <small><time datetime="{{episode.published_at.isoformat}}">{{episode.published_at}}</time></small>
+    </div>
+    <p class="mb-1">{{episode.description}}</p>
+    {% for enclosure in episode.enclosures.all %}
+    <audio controls>
+      <source src="{{enclosure.content.url}}" type="{{enclosure.mime_type}}">
+    </audio>
+    {% endfor %}
+    <small>
+        <a href="{{episode.url}}" target="_blank">view page </a>
+    </small>
+  </article>
+    {% endfor%}
+</section>
+{% endblock %}

@@ -5,4 +5,4 @@ from .models import Feed
 class ImportFeedForm(ModelForm):
     class Meta:
         model = Feed
-        fields = ('url',)
+        fields = ('feed_url',)
