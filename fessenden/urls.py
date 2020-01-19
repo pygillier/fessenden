@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('feeds/', include('feeds.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path("graphql", GraphQLView.as_view(
         graphiql=settings.DEBUG,
         schema=schema)),

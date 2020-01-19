@@ -1,16 +1,41 @@
 body {
     background-color: #EDE7DE;
     min-height:100vh;
+    font-family: 'Open Sans', sans-serif;
 }
 html,body {
   height: 100%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Navbar */
 div#navbar {
     box-shadow: 0px -1px #FFF, 0 2px 2px #171717 inset;
     border-top: 1px solid #CCC;
     background: #222;
+    color: white;
 }
+div#navbar h1 {
+}
+
 div#navbar a {
     color: white;
+}
+
+div#navbar hr {
+    border: none;
+    border-top: 3px double #333;
+    color: white;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+div#navbar hr:after {
+    content: '§';
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
 }

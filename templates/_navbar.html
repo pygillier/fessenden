@@ -1,11 +1,18 @@
-<div class="col-3 pt-5" id="navbar">
+<div class="col-2 pt-3" id="navbar">
+    <h1>Fessenden</h1>
+    {% if user.is_authenticated %}
     <nav class="nav flex-column">
         <a class="nav-link" href="{% url 'home:index' %}">Home page</a>
         <a class="nav-link" href="{% url 'feeds:import' %}">Import a feed</a>
         <a class="nav-link" href="{% url 'feeds:list' %}">All feeds</a>
+        <hr/>
+        <a class="nav-link" href="{% url 'logout' %}?next=/">Logout</a>
         {% if debug %}
+        <hr/>
+        <a class="nav-link" href="/admin/" target="_blank">Administration</a>
         <a class="nav-link" href="http://127.0.0.1:9000" target="_blank">Minio (minio/minio123)</a>
         <a class="nav-link" href="http://127.0.0.1:8080" target="_blank">PGAdmin</a>
         {% endif %}
     </nav>
+    {% endif %}
 </div>

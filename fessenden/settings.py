@@ -40,7 +40,6 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -58,6 +57,9 @@ INSTALLED_APPS = [
     # Fessenden
     'home.apps.HomeConfig',
     'feeds.apps.FeedsConfig',
+
+    # Admin at last (templates)
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
