@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from easy_thumbnails.fields import ThumbnailerImageField
+from djchoices import ChoiceItem, DjangoChoices
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
@@ -44,7 +45,15 @@ class Feed(models.Model):
 
 
 class Episode(models.Model):
-    feed = models.ForeignKey(Feed, on_delete=models.CASCADE, related_name='episodes')
+    feed = models.ForeignKey(
+        Feed,
+        on_delete=models.CASCADE,
+        related_name='episodes')
+
+    class Status(DjangoChoices):
+        unplayed = ChoiceItem('unplayed', 'Unplayed')
+        ongoing = ChoiceItem('ongoing', 'Ongoing')
+        finished = ChoiceItem('finished', 'Finished')
 
     title = models.CharField(max_length=200, blank=True)
     subtitle = models.TextField(blank=True, null=True)
@@ -55,6 +64,12 @@ class Episode(models.Model):
     link = models.URLField()
     total_time = models.IntegerField(default=0)
     guid = models.CharField(max_length=200, unique=True)
+
+    status = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.unplayed
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
