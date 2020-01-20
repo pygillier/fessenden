@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """fessenden URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 from fessenden.schema import schema
 from django.conf import settings
@@ -24,9 +26,9 @@ urlpatterns = [
     path('feeds/', include('feeds.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path("graphql", GraphQLView.as_view(
+    path("graphql", csrf_exempt(GraphQLView.as_view(
         graphiql=settings.DEBUG,
-        schema=schema)),
+        schema=schema))),
 ]
 
 if settings.DEBUG:
