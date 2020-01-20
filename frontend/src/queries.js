@@ -13,3 +13,11 @@ export const ALL_FEEDS = gql`
     }
 }
 `;
+
+export const DELETE_FEED = gql`
+mutation DeleteFeed($id:ID!) {
+    deleteFeed(id:$id){
+        ok
+    }
+}
+`;
