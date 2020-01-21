@@ -8,41 +8,30 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+The following tools are required to run fessenden:
 
-```
-Give examples
-```
+* Python **3.7.5** (managed through [pyenv](https://github.com/pyenv/pyenv) or equivalents)
+* [pipenv](https://pypi.org/project/pipenv/)
+* [Docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/compose-file/)
+
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+After cloning this repository, go into directory and run the following to deploy project and dependencies :
 
-Say what the step will be
-
-```
-Give the example
+```bash
+$ pipenv install --dev
 ```
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+When dependencies are installed,
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+TODO
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
+TODO
 
 ### And coding style tests
 
