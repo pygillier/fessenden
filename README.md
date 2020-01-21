@@ -13,6 +13,7 @@ The following tools are required to run fessenden:
 * Python **3.7.5** (managed through [pyenv](https://github.com/pyenv/pyenv) or equivalents)
 * [pipenv](https://pypi.org/project/pipenv/)
 * [Docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/compose-file/)
+* [pre-commit](https://pre-commit.com/) for code checks
 
 
 ### Installing
