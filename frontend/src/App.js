@@ -1,6 +1,8 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Grommet, Box, Grid, Text } from "grommet";
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import FeedList from './components/FeedList';
@@ -10,56 +12,58 @@ import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient();
 
-const theme = {
-  global: {
-    font: {
-      family: 'Open Sans',
-    },
-  },
-  heading: {
-    font: {
-      family: "Raleway",
-    }
-  }
-};
 
-const App = () => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  toolbar: theme.mixins.toolbar,
+}));
+
+export default function App(props) {
+  const classes = useStyles();
+  const { container } = props;
+
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   return (
     <ApolloProvider client={client}>
-      <Grommet full theme={theme}>
-        <Grid
-          fill
-          rows={["auto", "flex"]}
-          columns={["auto", "flex"]}
-          areas={[
-            { name: "header", start: [0, 0], end: [1, 0] },
-            { name: "sidebar", start: [0, 1], end: [0, 1] },
-            { name: "main", start: [1, 1], end: [1, 1] }
-          ]}
-        >
-          <Router>
-            <Header/>
-            <Sidebar/>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Router>
+          <Header handleDrawerToggle={handleDrawerToggle}/>
+          <Sidebar
+            container={container}
+            handleDrawerToggle={handleDrawerToggle}
+            mobileOpen={mobileOpen} />
+
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
             <Switch>
               <Route path="/import" component={ImportFeed} />
               <Route path="/feeds" component={FeedList} />
               <Route path="/feed/:slug">
-                <Box gridArea="main" justify="center" align="center">
-                  <Text>Feed details</Text>
-                </Box>
+                <Typography paragraph>
+                  Feed details
+                </Typography>
               </Route>
               <Route path="/">
-                <Box gridArea="main" justify="center" align="center">
-                  <Text>home</Text>
-                </Box>
+                <Typography paragraph>
+                  Main content
+                </Typography>
               </Route>
             </Switch>
-          </Router>
-        </Grid>
-      </Grommet>
+          </main>
+        </Router>
+      </div>
     </ApolloProvider>
   );
 }
-
-export default App;

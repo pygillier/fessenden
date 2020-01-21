@@ -1,11 +1,24 @@
 import React from 'react';
-import { Main, Heading } from "grommet";
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import FeedCard from './FeedCard';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import {ALL_FEEDS, DELETE_FEED} from '../queries';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const FeedList = () => {
 
+    const classes = useStyles();
     const { data, loading, error } = useQuery(ALL_FEEDS);
     const [deleteFeed] = useMutation(DELETE_FEED);
 
@@ -13,16 +26,18 @@ const FeedList = () => {
     if (error) return <p>Error :(</p>;
 
     const feedList = data.allFeeds.edges.map((feed) =>
-        <FeedCard key={feed.node.id} feed={feed.node} deleteFeed={deleteFeed}/>
+        <Grid item xs={4}>
+            <FeedCard key={feed.node.id} feed={feed.node} deleteFeed={deleteFeed}/>
+        </Grid>
     );
 
 
     return(
-        <Main pad="medium">
-            <Heading>All feeds</Heading>
-            {feedList}
-
-        </Main>
+        <div className={classes.root}>
+            <Grid container spacing={3}>
+                {feedList}
+            </Grid>
+        </div>
     );
 }
 

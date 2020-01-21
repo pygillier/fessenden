@@ -1,28 +1,54 @@
-import React from 'react'
-import { Grommet, grommet, Box, Image, Heading, Button } from 'grommet';
-import { Nodes, Trash } from 'grommet-icons'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
+const useStyles = makeStyles({
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+});
 
-const FeedCard = (props) => {
+export default function FeedCard(props) {
+  const classes = useStyles();
 
   function handleDelete() {
     props.deleteFeed({variables: {id: props.feed.id}});
   }
 
   return (
-    <Grommet theme={grommet}>
-      <Box direction="column" align="center" gap="xxsmall" pad="small" round="medium" border={{"size":"medium","side":"all","color":"accent-4"}} width="medium">
-        <Image src="https://placekitten.com/200/300" fit="contain" />
-        <Heading level="3">
-          {props.feed.title}
-        </Heading>
-        <Box align="center" justify="between" direction="row" gap="xlarge" fill="horizontal">
-          <Button path='/' label="All episodes" primary={true} reverse={false} icon={<Nodes />} />
-          <Button label="Delete" icon={<Trash />} hoverIndicator={true} color="status-critical" onClick={handleDelete} />
-        </Box>
-      </Box>
-    </Grommet>
-  )
+    <Card className={classes.card}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image="/static/images/cards/contemplative-reptile.jpg"
+          title={props.feed.title}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {props.feed.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {props.feed.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          All episodes
+        </Button>
+        <Button size="small" color="secondary" onClick={handleDelete}>
+          Delete
+        </Button>
+      </CardActions>
+    </Card>
+  );
 }
-
-export default FeedCard;

@@ -8,6 +8,7 @@ export const ALL_FEEDS = gql`
                 id
                 title
                 cover
+                description
             }
         }
     }
