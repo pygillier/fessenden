@@ -1,23 +1,24 @@
 import React from 'react';
 import { Box, Text } from "grommet";
-import { Link } from 'react-router-dom';
+import { RouterAnchor } from './routing.js';
 
 const Sidebar = () => {
     return (
         <Box
             gridArea="sidebar"
-            background="dark-3"
+            background="dark-1"
             width="small"
-            animation={[
-              { type: "fadeIn", duration: 300 },
-              { type: "slideRight", size: "xlarge", duration: 150 }
-            ]}
         >
-            <Link render="Anchor" key="feeds" to="/feeds">
+            <RouterAnchor key="Import" path="/import">
+                <Box pad={{ horizontal: "medium", vertical: "small" }}>
+                    <Text>Import a feed</Text>
+                </Box>
+            </RouterAnchor>
+            <RouterAnchor key="feeds" path="/feeds">
                 <Box pad={{ horizontal: "medium", vertical: "small" }}>
                     <Text>All feeds</Text>
                 </Box>
-            </Link>
+            </RouterAnchor>
         </Box>
     );
 }

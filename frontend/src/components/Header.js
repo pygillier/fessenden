@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Box, Button, Menu } from "grommet";
+import { Box, Menu, Heading } from "grommet";
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -11,11 +11,9 @@ const Header = () => {
           align="center"
           justify="between"
           pad={{ horizontal: "medium", vertical: "small" }}
-          background="dark-2"
+          background="dark-1"
         >
-            <Button>
-                <Link size="large" to="/">Fessenden</Link>
-            </Button>
+          <Heading as={Link} to="/" level="1" size="small">Fessenden</Heading>
             <Menu
                 label="my@email"
                 items={[

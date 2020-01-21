@@ -1,21 +1,33 @@
-import React, {useState} from 'react';
-import './App.css';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Grommet, Box, Grid, Text } from "grommet";
-import { grommet } from "grommet/themes";
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import FeedList from './components/FeedList';
+import ImportFeed from './components/ImportFeed';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient();
 
+const theme = {
+  global: {
+    font: {
+      family: 'Open Sans',
+    },
+  },
+  heading: {
+    font: {
+      family: "Raleway",
+    }
+  }
+};
+
 const App = () => {
 
   return (
     <ApolloProvider client={client}>
-      <Grommet full theme={grommet}>
+      <Grommet full theme={theme}>
         <Grid
           fill
           rows={["auto", "flex"]}
@@ -30,6 +42,7 @@ const App = () => {
             <Header/>
             <Sidebar/>
             <Switch>
+              <Route path="/import" component={ImportFeed} />
               <Route path="/feeds" component={FeedList} />
               <Route path="/feed/:slug">
                 <Box gridArea="main" justify="center" align="center">

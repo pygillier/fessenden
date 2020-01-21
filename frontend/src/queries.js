@@ -14,6 +14,21 @@ export const ALL_FEEDS = gql`
 }
 `;
 
+export const IMPORT_FEED = gql`
+mutation ImportFeed($url:String!){
+  importFeed(input:{
+    feedUrl: $url
+  }) {
+    clientMutationId
+    feed {
+      id
+      title
+      cover
+    }
+  }
+}
+`;
+
 export const DELETE_FEED = gql`
 mutation DeleteFeed($id:ID!) {
     deleteFeed(id:$id){

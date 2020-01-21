@@ -1,6 +1,5 @@
 import React from 'react'
 import { Grommet, grommet, Box, Image, Heading, Button } from 'grommet';
-import { Link } from 'react-router-dom';
 import { Nodes, Trash } from 'grommet-icons'
 
 
