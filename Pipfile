@@ -11,7 +11,7 @@ rq = "python ./manage.py rqworker enclosures default updates"
 flake8 = "*"
 
 [packages]
-django = "==2.2.9"
+django = "==2.2.13"
 sentry-sdk = "==0.13.5"
 graphene-django = "==2.8.0"
 atoma = "==0.0.17"
